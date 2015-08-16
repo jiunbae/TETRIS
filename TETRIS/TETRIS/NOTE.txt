@@ -35,4 +35,10 @@ Step 2. 화면 구성
 			COORD cur = { x, y };
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
 			printf("☆");
-	
+
+	2. 배열에 의한 처리
+	게임을 진행하는 부분을 하나의 커다란 2차원 배열로 볼 수 있을 것입니다.(참조-\res\array.png)
+	우리가 구성한 실제 맵은 10x21의 크기이므로 좌우에 여백을 1개씩 두어도 12x23 크기의 배열을 선언하면 될 것입니다.
+	이 배열에는 블럭인지 아닌지에 해당하는 데이터가 들어갈 것입니다.
+	char형 [-127~128] 이면 충분한 데이터를 담을 수 있을 것 이므로 char형의 배열을 하나 선언해 줍시다.
+		char matrix[12][23];
