@@ -1,13 +1,13 @@
-#pragma once
+ï»¿#pragma once
 
 #include <stdio.h>
 
 #ifdef WIN32
-//ÀÌ ÀüÃ³¸® ±¸¹®ÀýÀº WINDOWS¿¡¼­¸¸ ½ÇÇàµË´Ï´Ù.
+//ì´ ì „ì²˜ë¦¬ êµ¬ë¬¸ì ˆì€ WINDOWSì—ì„œë§Œ ì‹¤í–‰ë©ë‹ˆë‹¤.
 
 #include <conio.h>
 
 #pragma warning ( disable : 4996)
-//ÀÌ ÀüÃ³¸® ±¸¹®Àº C4996¿¡·¯¸¦ ¹«½ÃÇÕ´Ï´Ù.
+//ì´ ì „ì²˜ë¦¬ êµ¬ë¬¸ì€ C4996ì—ëŸ¬ë¥¼ ë¬´ì‹œí•©ë‹ˆë‹¤.
 
 #endif
