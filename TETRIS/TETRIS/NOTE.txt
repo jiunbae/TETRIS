@@ -11,7 +11,7 @@ Step 0. 들어가기에 앞서
 	이 프로젝트를 진행하려면 먼저 기본적인 C의 입출력부터 변수와 상수, 함수, 구조체 등등에 대한 기초지식이 필요합니다.
 		-물론 주석은 충분히 달 예정입니다.
 
-Step 1. 계획 & 구성
+Step 1. 계획 & 구상
 	TETRIS란?(https://ko.wikipedia.org/wiki/%ED%85%8C%ED%8A%B8%EB%A6%AC%EC%8A%A4)
 		-간단히 7개의 테트로미노(4개의 사각형으로 이루어진)를 이용하여 수평선을 빈틈 없이 채우는 게임.
 
@@ -20,5 +20,19 @@ Step 1. 계획 & 구성
 
 	1. 이러한 화면 구성을 위해 우리는 콘솔창의 크기를 조절해야합니다.
 		-아래 구문을 사용하여 콘솔창의 크기를 x, y로 조절할 수 있습니다.
-			=system("mode con:cols=x linew=y");
-		-우리는 35, 20으로 설정합시다.
+			system("mode con:cols=x linew=y");
+		-x우리는 35, 20으로 설정합시다.
+		-하다보니 35, 25가 더 나은것 같다.
+
+
+Step 2. 화면 구성
+	printf()를 적절히 이용해 다음과 같은 화면을 만들어봅시다.(참조-\res\화면구성_console.png)
+
+	1. 이 화면구성을 매번 출력한다면 화면이 깜빡이는 현상이 나타나게됩니다.
+	따라서 화면을 매번 새로고치지 않고 원하는 부분만 새로 고칠 수 있는 방법을 활용합니다.
+		-Windows.h 의 SetConsoleCursorPosition과 GetStdHandle함수를 사용해서 원하는 위치에 콘솔커서를 옮길 수 있습니다.
+		-아래 구문을 사용하여 x, y위치에 별을 출력해 봅시다.
+			COORD cur = { x, y };
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+			printf("☆");
+	

@@ -9,6 +9,7 @@
 
 #ifdef WIN32
 //이 전처리 구문절은 WINDOWS에서만 실행됩니다.
+	#include <Windows.h>
 
 	#include <conio.h>
 
