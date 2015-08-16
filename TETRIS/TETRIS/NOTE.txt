@@ -1,14 +1,14 @@
-ÀÌ ³ëÆ®´Â ÇÁ·ÎÁ§Æ®ÀÇ Àü¹ÝÀûÀÎ ¼³¸íÀ» ´ã´çÇÕ´Ï´Ù.
+ï»¿ì´ ë…¸íŠ¸ëŠ” í”„ë¡œì íŠ¸ì˜ ì „ë°˜ì ì¸ ì„¤ëª…ì„ ë‹´ë‹¹í•©ë‹ˆë‹¤.
 
-ÀÌ ÇÁ·ÎÁ§Æ®´Â C·Î ÄÜ¼ÖÃ¢¿¡ tetris¸¦ ±¸ÇöÇÏ´Â ¸ñÇ¥¸¦ °¡Áö°í ÀÖ½À´Ï´Ù.
+ì´ í”„ë¡œì íŠ¸ëŠ” Cë¡œ ì½˜ì†”ì°½ì— tetrisë¥¼ êµ¬í˜„í•˜ëŠ” ëª©í‘œë¥¼ ê°€ì§€ê³  ìžˆìŠµë‹ˆë‹¤.
 
 by Maybe(maybe@hanyang.ac.kr)
 
 
-Step 0. µé¾î°¡±â¿¡ ¾Õ¼­
-	ÀÌ ÇÁ·ÎÁ§Æ®ÀÇ Àü¹ÝÀû °³°ý¿¡ °üÇÑ »çÇ×Àº Tumblr(http://maytryark.tumblr.com/) ¿Í facebook(https://www.facebook.com/MayTryArk)¿¡ °³ÀçµÉ ¿¹Á¤ÀÔ´Ï´Ù.
+Step 0. ë“¤ì–´ê°€ê¸°ì— ì•žì„œ
+	ì´ í”„ë¡œì íŠ¸ì˜ ì „ë°˜ì  ê°œê´„ì— ê´€í•œ ì‚¬í•­ì€ Tumblr(http://maytryark.tumblr.com/) ì™€ facebook(https://www.facebook.com/MayTryArk)ì— ê°œìž¬ë  ì˜ˆì •ìž…ë‹ˆë‹¤.
 	
-	ÀÌ ÇÁ·ÎÁ§Æ®¸¦ ÁøÇàÇÏ·Á¸é ¸ÕÀú ±âº»ÀûÀÎ CÀÇ ÀÔÃâ·ÂºÎÅÍ º¯¼ö¿Í »ó¼ö, ÇÔ¼ö, ±¸Á¶Ã¼ µîµî¿¡ ´ëÇÑ ±âÃÊÁö½ÄÀÌ ÇÊ¿äÇÕ´Ï´Ù.
-		¹°·Ð ÁÖ¼®Àº ÃæºÐÈ÷ ´Þ ¿¹Á¤ÀÔ´Ï´Ù.
+	ì´ í”„ë¡œì íŠ¸ë¥¼ ì§„í–‰í•˜ë ¤ë©´ ë¨¼ì € ê¸°ë³¸ì ì¸ Cì˜ ìž…ì¶œë ¥ë¶€í„° ë³€ìˆ˜ì™€ ìƒìˆ˜, í•¨ìˆ˜, êµ¬ì¡°ì²´ ë“±ë“±ì— ëŒ€í•œ ê¸°ì´ˆì§€ì‹ì´ í•„ìš”í•©ë‹ˆë‹¤.
+		ë¬¼ë¡  ì£¼ì„ì€ ì¶©ë¶„ížˆ ë‹¬ ì˜ˆì •ìž…ë‹ˆë‹¤.
 
 	
