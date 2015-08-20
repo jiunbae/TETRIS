@@ -154,6 +154,13 @@
   <ItemGroup>
     <Text Include="NOTE.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\array.png" />
+    <Image Include="res\block.png" />
+    <Image Include="res\result_3.png" />
+    <Image Include="res\화면구성.png" />
+    <Image Include="res\화면구성_console.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
