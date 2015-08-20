@@ -9,6 +9,8 @@ char BC[] = { NONE, SKYBLUE, BLUE, ORANGE, YELLOW, RED, PUPLE, GREEN };
 
 #define X 12
 #define Y 23
+
+int delay = 1000;
 char matrix[X][Y];
 char matrix_printed[X][Y];
 
@@ -26,13 +28,30 @@ void print_matrix()
 		{
 			if (matrix_printed[i][j] - matrix[i][j])
 			{
-				cur2xy(j*2,i);
-				printf("■");
+				cur2xy(j * 2, i);
+				if (matrix[i][j])
+					printf("■");
+				else
+					printf("□");
 				matrix_printed[i][j] = matrix[i][j];
 			}
 		}
 	}
-
+}
+void move_matrix()
+{
+	int i, j;
+	for (i = Y - 1; i + 1; i--)
+	{
+		for (j = X - 1; j + 1; j--)
+		{
+			if (matrix[i][j])
+			{
+				matrix[i + 1][j] = matrix[i][j];
+				matrix[i][j] = 0;
+			}
+		}
+	}
 }
 void create_block(char value)
 {
@@ -50,7 +69,6 @@ void initialize()
 		for (j = 0; j < X; j++)
 		{
 			matrix_printed[i][j] = matrix[i][j] = 0;
-
 		}
 	}
 }
@@ -81,7 +99,15 @@ int main()
 	printf("■□□□□□□□□□□■□□□□■\n");
 	printf("■□□□□□□□□□□■□□□□■\n");
 	printf("■■■■■■■■■■■■■■■■■\n");
-	create_block(6);
-	print_matrix();
-	cur2xy(0,23);
+
+	srand(time(NULL));
+
+	create_block(rand() % 6 + 1);
+	for (;;)
+	{
+		Sleep(delay);
+		move_matrix();
+		print_matrix();
+		cur2xy(0, 23);
+	}
 }

@@ -113,7 +113,7 @@ Step 3. 테스트
 		!계속하려면 ~ 메세지가 중간에 나오는 것이 보기 싫으므로 마지막줄에 아래의 코드를 추가합니다.
 			cur2xy(0,23);
 
-Step4. 블럭 생성
+Step 4. 블럭 생성
 	위와 같은 방식으로 모든 블럭을 생성할 순 없으니 블럭을 생성하는 함수를 만들어봅시다.
 	
 	그런데 블럭은 무조건 상단 중앙에서 생성되는 것을 상기해볼 필요가 있습니다.
@@ -169,3 +169,79 @@ Step4. 블럭 생성
 	main함수 하단에 아래의 코드를 추가해서 블럭이 정상적으로 생성되나 확인해 봅시다.
 		create_block(2);
 		print_matrix();
+
+Step 5. 시간에 따른 블럭 이동
+	테트리스는 시간에 따라서 블럭이 아래로 한칸씩 이동해야 합니다.
+
+	이러한 시간에 따른 처리 함수를 한 번 만들어 보도록 하겠습니다.
+
+	상단에 delay를 정의합니다. 이 값은 추후에 바뀔 수 있으므로 변수로 선언합니다.
+		int delay = 1000;
+
+	main함수의 하단에 아래의 코드를 추가해서 블럭이 시간에 따라 생성되도록 확인해 봅시다.
+		srand(time(NULL));
+
+		for (;;)
+		{
+			Sleep(delay);
+			create_block(rand() % 6 + 1);
+			print_matrix();
+			cur2xy(0, 23);
+		}
+
+	!그런데 이러한 실행은 블럭이 같은자리에 계속 생성됩니다.
+	블럭을 delay마다 한 칸씩 아래로 내리려면 어떻게 해야할까요?
+
+	-함수를 만듭니다:		모든 블럭을 한칸 아래로 옮기는 함수(move_matrix)
+		void move_matrix()
+		{
+			int i, j;
+			for (i = Y - 1; i + 1; i--)
+			{
+				for (j = X - 1; j + 1; j--)
+				{
+					if (matrix[i][j])
+					{
+						matrix[i + 1][j] = matrix[i][j];
+						matrix[i][j] = 0;
+					}
+				}
+			}
+		}
+
+	main함수 하단에 아래의 코드를 추가해 봅시다.
+		srand(time(NULL));
+
+		create_block(rand() % 6 + 1);
+		for (;;)
+		{
+			Sleep(delay);
+			move_matrix();
+			print_matrix();
+			cur2xy(0, 23);
+		}
+
+	!이렇게 실행되면 뒤에 생겼던 블럭들이 사라지지 않는것을 알 수 있습니다.
+	이는 print_matrix함수에서 블럭이 없던 자리에 생기는 경우는 생각했지만 반대의 경우는 생각하지 않아서 입니다.
+
+	print_matrix함수를 아래와 같이 고쳐줍니다.
+		void print_matrix()
+		{
+			int i, j;
+			for (i = 0; i < Y; i++)
+			{
+				for (j = 0; j < X; j++)
+				{
+					if (matrix_printed[i][j] - matrix[i][j])
+					{
+						cur2xy(j * 2, i);
+						if (matrix[i][j])
+							printf("■");
+						else
+							printf("□");
+						matrix_printed[i][j] = matrix[i][j];
+					}
+				}
+			}
+		}
+

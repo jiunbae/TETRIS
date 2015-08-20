@@ -5,8 +5,6 @@
 //stdio.h를 사용합니다.
 	//이 헤더의 printf함수가 사용되었습니다.
 
-
-
 #ifdef WIN32
 //이 전처리 구문절은 WINDOWS에서만 실행됩니다.
 	#include <Windows.h>
