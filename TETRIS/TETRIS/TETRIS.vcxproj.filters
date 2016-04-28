@@ -15,33 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
+    <Text Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="tetris.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h">
+    <ClInclude Include="tetris.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="NOTE.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="res\array.png">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="res\block.png">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="res\result_3.png">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="res\화면구성.png">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="res\화면구성_console.png">
-      <Filter>리소스 파일</Filter>
-    </Image>
   </ItemGroup>
 </Project>

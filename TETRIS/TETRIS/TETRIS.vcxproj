@@ -146,20 +146,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.c" />
+    <ClCompile Include="tetris.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h" />
+    <ClInclude Include="tetris.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="NOTE.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="res\array.png" />
-    <Image Include="res\block.png" />
-    <Image Include="res\result_3.png" />
-    <Image Include="res\화면구성.png" />
-    <Image Include="res\화면구성_console.png" />
+    <Text Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
