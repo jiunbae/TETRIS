@@ -26,23 +26,57 @@
 * 
 * - 미리 정의된 구조
 *	typedef int bool		: 0은 flase, 1은 true를 나타내는 boolean형태의 구조입니다.
-*	typedef COORD POINT		: 좌표를 나타낼 수 있도록 x, y를 가지고 있는 구조체입니다.
-*	typedef char BLOCK		: 블럭을 나타냅니다. 0은 비어있는 블럭을, 1 이상은 각 색상값에 해당하는 블럭 하나를 나타냅니다.
-*	typedef BLOCK** MATRIX	: matrix는 앞으로 테트리스 판을 나타냅니다.
-*							  이차원 배열로 구성되어있으며 그것의 주소를 사용하기 위해 삼중 포인터로 구현되어있습니다.
+*	typedef int BLOCK		: 블럭을 나타냅니다. 0은 빈 블럭, 1이상은 각각 블럭의 색상을 나타냅니다.
+*	typedef BLOCK** MATRIX	: BLOCK의 2차원 배열입니다. 이는 하나의 맵을 나타냅니다.
+*	typedef MATRIX* MATPTR	: MATRIX의 주소를 나타냅니다.
+*
 *
 * - 미리 정의된 함수
-*	MATRIX getMatrix()			: 현재 맵을 matrix형태로 반환해 줍니다.
-*   void setMatrix(MATRIX)		: 현재 맵을 인자로 사용한 matrix로 변경합니다.
-*	void refresh()				: 화면을 강제로 새로고침합니다.
+* setCur()
+*	이 함수는 커서의 위치를 설정합니다.
+*	- 인자: x, y로 콘솔의 커서를 설정합니다.
 *
+* getCur()
+*	이 함수는 현재 커서의 위치를 반환합니다.
+*	- 반환: 현재 커서를 POINT형식으로 반환합니다.
+*
+* setColor()
+*	현재 콘솔의 색상을 지정합니다.
+*	- 인자: color로 색상을 지정합니다.
+*
+* render()
+*	이 함수는 rend와 matrix 두개의 맵을 받아 화면에 출력합니다.
+*	rend는 이미 출력된 맵의 주소를 입력해야 합니다.
+*	matrix는 변경된 맵의 주소를 입력합니다.
+*	두 개의 맵의 차이가 있다면 그지점으로 커서를 이동하여 바뀐 값을 출력합니다.
+*	- 인자: rend: 이미 출력되었던 맵의 주소를 넣어줍니다.
+*		   matrix: 이제 출력할 맵의 주소를 넣어줍니다.
+*
+* newMatrix()
+*	이 함수는 인자로 받은 matrix의 주소를 받아 그 matrix를 HEIGHT와 WIDTH의 크기로 초기화 해줍니다.
+*	- 인자: 초기화할 맵의 주소
+*
+* getMatrix()
+*	현재 matrix를 반환합니다.
+*	- 반환: 현재 출력할 matrix를 반환합니다.
+*
+* setMatrix()
+*	변경된 matrix를 출력하고 적용시킵니다.
+*	- 인자: 출력할 matrix
+*
+* printBlock()
+*	이 함수는 지정된 Block을 출력합니다.
+*	- 인자: value의 값을 갖는 Block을 출력합니다.
+*
+* getKeyInput()
+*	문자를 하나 입력받습니다. 입력 버퍼 딜레이가 없습니다.
+*	- 반환: 입력된 문자를 반환해 줍니다.
 */
-int x = 0, y = 0;
+
 void eventInitilize()
 {
 	autoState = 1;
-	x = 0;
-	y = 0;
+
 	/**
 	* TODO:
 	* 이 함수는 프로그램이 시작될 때 한번만 실행됩니다.
@@ -67,27 +101,6 @@ void eventGameInit()
 }
 void eventKeyPress(int key)
 {
-	MATRIX * map = getMatrix();
-	(*map)[x][y] = BLOCK_EMPTY;
-	switch (key)
-	{
-		case UP:
-			--x;
-			break;
-		case LEFT:
-			--y;
-			break;
-		case RIGHT:
-			++y;
-			break;
-		case DOWN:
-			++x;
-			break;
-		default:
-			break;
-	};
-	(*map)[x][y] = BLOCK_FULL;
-	setMatrix(map);
 	/**
 	* TODO: 
 	* 여기에 key가 눌렸을 때 수행할 행동을 적습니다.
