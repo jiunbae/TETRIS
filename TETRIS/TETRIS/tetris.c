@@ -58,11 +58,18 @@ void render(MATPTR rend, MATPTR matrix)
 	setCur(point.x, point.y);
 }
 
-void newMatrix(MATPTR matrix)
+void newMatrix(MATPTR matrix, int height, int width)
 {
-	*matrix = (MATRIX)malloc(sizeof(BLOCK*) * HEIGHT);
-	for (int i = 0; i < HEIGHT; ++i)
-		(*matrix)[i] = (BLOCK*)calloc(sizeof(BLOCK), WIDTH);
+	*matrix = (MATRIX)malloc(sizeof(BLOCK*) * height);
+	for (int i = 0; i < height; ++i)
+		(*matrix)[i] = (BLOCK*)calloc(sizeof(BLOCK), width);
+}
+bool delMatrix(MATPTR matrix, int height, int width)
+{
+	for (int i = 0; i < height; ++i)
+		free((*matrix)[i]);
+	free((*matrix));
+	return true;
 }
 MATPTR getMatrix()
 {
@@ -77,14 +84,14 @@ void printBlock(int value)
 {
 	switch (value)
 	{
-	case EMPTY:
-		printf("  ");
-		break;
-	case FULL:
-		printf("■");
-		break;
-	default:
-		break;
+		case EMPTY:
+			printf("  ");
+			break;
+		case FULL:
+			printf("■");
+			break;
+		default:
+			break;
 	}
 }
 
@@ -106,8 +113,8 @@ int main()
 	
 	srand((unsigned int)time(NULL));
 
-	newMatrix(&map);
-	newMatrix(&rendered);
+	newMatrix(&map, HEIGHT, WIDTH);
+	newMatrix(&rendered, HEIGHT, WIDTH);
 
 	sprintf(command, "mode con:cols=%d lines=%d", 2 * WIDTH + 5, 4+HEIGHT);
 	system(command);
@@ -127,20 +134,22 @@ int main()
 				flag = flagNow;
 			}
 		} while (!kbhit());
-	
+		eventKeyPress(getKeyInput());
+
 		switch (state)
 		{
 			case INIT:
 				eventGameInit();
 				render(&rendered, &map);
-				state = GAME;
+				if(autoState)
+					state = GAME;
 				break;
 			case GAME:
-				eventKeyPress(getKeyInput());
 				break;
 			case DEAD:
 				eventGameOver();
-				state = INIT;
+				if(autoState)
+					state = INIT;
 				break;
 			default:
 				break;

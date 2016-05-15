@@ -146,15 +146,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="block.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="tetris.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="block.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="tetris.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

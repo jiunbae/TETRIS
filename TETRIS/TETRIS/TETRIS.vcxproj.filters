@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="tetris.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="main.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="block.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,6 +30,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="block.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,119 +1,124 @@
 ﻿#pragma once
-//이 전처리 구문은 헤더파일의 중복을 피합니다.
+//Avoid duplication header
 
 #include <stdio.h>
 #include <time.h>
 
 #ifdef _WIN32
-//이 전처리 구문은 WINDOWS인 경우 해당됩니다.	
+//if windows
 	#include <conio.h>
 	#include <Windows.h>
 
 	#ifdef _MSC_VER
-	//이 전처리 구문은 Visual Studio Compiler를 체크합니다.
+	//if using visualstudio
 		#pragma warning ( disable : 4996)
-		//이 전처리 구문은 Visual Studio에서 C4996에러를 무시하는데 사용됩니다.
+		//skip C4996 error
 		//https://msdn.microsoft.com/ko-kr/library/ttcz0bys.aspx
 	#endif
 #else
-//이 전처리 구문은 WINDOWS가 아닐경우 해당됩니다.
+//if not windows
 	#error This program developed for windows.
 	#include <unistd.h>
 #endif
 
 #include "main.h"
 
-//구조를 정의합니다.
+// define type
 typedef int bool;
 typedef int BLOCK;
 typedef BLOCK** MATRIX;
 typedef MATRIX* MATPTR;
 
-//bool에 사용할 false와 true를 정의합니다.
+// define BOOLEAN, C has no BOOLEAN structer.
 enum BOOLEAN { false, true };
 
-//state에 사용할 INIT, GAME, DEAD를 정의합니다.
+// the game stat, init, game, dead.
 enum STATE { INIT, GAME, DEAD };
 
-//이 색상은 TTC 세계표준 테트리스 색상을 나타냅니다.
+// color for blocks (console color)
 enum COLOR { NONE = 7, SKYBLUE = 3, BLUE = 11, ORANGE = 4, YELLOW = 14, RED = 12, PUPLE = 13, GREEN = 10 };
 
-//상 좌 우 하를 나타내는 enum
+// keybinding
 enum KEY { UP = 372, LEFT = 375, RIGHT = 377, DOWN = 380};
 
 enum BLOCK { EMPTY, FULL, SQUARE };
 
-//게임판의 크기를 정합니다.
+// set size
 const static int WIDTH = 10, HEIGHT = 23;
 
 static int state, autoState;
 
-//반복 루프의 시간 간격을 정합니다.
+// set time interval of loop
 static int timeInterval = 1000;
 
 /**
 * setCur()
-*	이 함수는 커서의 위치를 설정합니다.
-*	- 인자: x, y로 콘솔의 커서를 설정합니다.
+*	set console cursor
+*	- arg: cursor position to set
 */
 void setCur(int x, int y);
 
 /**
 * getCur()
-*	이 함수는 현재 커서의 위치를 반환합니다.
-*	- 반환: 현재 커서를 POINT형식으로 반환합니다.
+*	return console cursor
+*	- return: now cursor point
 */
 POINT getCur();
 
 /**
 * setColor()
-*	현재 콘솔의 색상을 지정합니다.
-*	- 인자: color로 색상을 지정합니다.
+*	set consloe color to color
+*	- arg: color
 */
 void setColor(int color);
 
 /**
 * render()
-*	이 함수는 rend와 matrix 두개의 맵을 받아 화면에 출력합니다.
-*	rend는 이미 출력된 맵의 주소를 입력해야 합니다.
-*	matrix는 변경된 맵의 주소를 입력합니다.
-*	두 개의 맵의 차이가 있다면 그지점으로 커서를 이동하여 바뀐 값을 출력합니다.
-*	- 인자: rend: 이미 출력되었던 맵의 주소를 넣어줍니다.
-*		   matrix: 이제 출력할 맵의 주소를 넣어줍니다.
+*	render a matrix.
+*	get two matrix, just print difference between two matrix
+*	- arg: pointer of rended matrix, pointer of matrix to print
 */
 void render(MATPTR rend, MATPTR matrix);
 
 /**
 * newMatrix()
-*	이 함수는 인자로 받은 matrix의 주소를 받아 그 matrix를 HEIGHT와 WIDTH의 크기로 초기화 해줍니다.
-*	- 인자: 초기화할 맵의 주소
+*	create new matrix with height, width
+*	- arg: pointer of matrix, height, width
 */
-void newMatrix(MATPTR matrix);
+void newMatrix(MATPTR matrix, int height, int width);
+
+/**
+* delMatrix()
+*	dealloc matrix
+*	when after using matrix, must call this function
+*	- arg: pointer of matrix to delete, height of matrix, width of matrix
+*/
+bool delMatrix(MATPTR matrix, int height, int width);
 
 /**
 * getMatrix()
-*	현재 matrix를 반환합니다.
-*	- 반환: 현재 출력할 matrix를 반환합니다.
+*	return now matrix(printed matrix just before)
+*	- return: now matrix
 */
 MATPTR getMatrix();
 
 /**
 * setMatrix()
-*	변경된 matrix를 출력하고 적용시킵니다.
-*	- 인자: 출력할 matrix
+*	set matrix and print.
+*	- arg: point of matrix to print
 */
 void setMatrix(MATPTR matrix);
 
 /**
 * printBlock()
-*	이 함수는 지정된 Block을 출력합니다.
-*	- 인자: value의 값을 갖는 Block을 출력합니다.
+*	print block (EMPTY == " ", FULL == "■")
+*	- arg: block
 */
 void printBlock(int value);
 
 /**
 * getKeyInput()
-*	문자를 하나 입력받습니다. 입력 버퍼 딜레이가 없습니다.
-*	- 반환: 입력된 문자를 반환해 줍니다.
+*	input a key.
+*	- return: inputed key.
 */
 int getKeyInput();
